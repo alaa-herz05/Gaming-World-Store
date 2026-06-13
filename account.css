@@ -1,0 +1,167 @@
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  background: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+form {
+  width: 420px;
+  padding: 30px;
+  background: linear-gradient(145deg, #111, #070707);
+  border: 1px solid rgba(201, 77, 6, 0.2);
+  border-radius: 25px;
+  box-shadow:
+    0 0 20px rgba(201, 77, 6, 0.25),
+    0 0 60px rgba(201, 77, 6, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.site-logo {
+  margin: 0 0 10px;
+  color: #c94d06;
+  font-size: 42px;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  text-shadow:
+    0 0 10px #c94d06,
+    0 0 25px rgba(201, 77, 6, 0.5);
+}
+
+form input {
+  width: 100%;
+  padding: 18px;
+  background: #050505;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+form input::placeholder {
+  color: #777;
+}
+
+form input:focus {
+  border-color: #c94d06;
+  box-shadow: 0 0 10px rgba(201, 77, 6, 0.5);
+}
+
+form button,
+form p a,
+.upload-btn {
+  background: #c94d06;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+form button {
+  width: 100%;
+  padding: 18px;
+  font-size: 20px;
+}
+
+form button:hover,
+form p a:hover,
+.upload-btn:hover {
+  background: #e66008;
+  box-shadow: 0 0 20px rgba(201, 77, 6, 0.6);
+}
+
+form button:hover {
+  transform: scale(1.02);
+}
+
+form p {
+  width: 100%;
+  margin: 0;
+}
+
+form p a {
+  display: block;
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.password-box {
+  position: relative;
+  width: 100%;
+}
+
+.password-box input {
+  padding-right: 55px;
+  padding-left: 18px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+}
+.profile-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border: 3px solid #c94d06;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 25px #c94d06;
+}
+
+.default-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #050505;
+  color: #c94d06;
+  font-size: 55px;
+}
+
+.upload-btn {
+  padding: 10px 25px;
+}
+
+.delete-image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-image-box input {
+  width: auto;
+}

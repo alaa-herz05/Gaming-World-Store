@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuphead - Gaming World</title>
+
+  <link rel="icon" type="image/png" href="Icon.png">
+  <link rel="stylesheet" href="game.css?v=1003">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<div id="game-container"></div>
+
+<main class="product-card">
+  <img 
+    src="https://metro.co.uk/wp-content/uploads/2017/10/cuphead_1920x1080.jpg?quality=90&strip=all"
+    alt="Cuphead"
+  >
+
+  <h3>☕ Cuphead</h3>
+
+  <p>
+    A classic platform and action game, known for its stunning art style inspired by the golden age
+    of 1930s cartoons. The game is famous for its high difficulty and mainly focuses
+    on continuous boss battles.
+  </p>
+
+  <p>
+    🎮 Genre: <strong>Platforms</strong><br>
+    💰 Price: <span class="game-price">20 JD</span>
+  </p>
+
+  <img 
+    src="https://www.cartoonbrew.com/wp-content/uploads/2015/11/cupheadgameplay.jpg"
+    alt="Cuphead Screenshot 1"
+  >
+
+  <img 
+    src="https://www.gamespot.com/a/uploads/original/536/5360430/2556181-cuphead-screenshot-bat.jpg"
+    alt="Cuphead Screenshot 2"
+  >
+
+  <img 
+    src="https://i.ytimg.com/vi/54Nzs4rFNvU/maxresdefault.jpg"
+    alt="Cuphead Screenshot 3"
+  >
+
+  <div class="copyright">
+    All rights reserved to 
+    <a href="https://studiomdhr.com/" target="_blank" style="color:#930505; text-decoration:none;">
+      Studio MDHR
+    </a>
+  </div>
+
+  <div class="button-group">
+    <a 
+      href="https://www.youtube.com/watch?v=NN-9SQXoi50"
+      target="_blank"
+      class="btn-modern btn-video">
+      <i class="fa-solid fa-play"></i>
+      <span>Watch Trailer</span>
+    </a>
+
+    <button 
+      onclick="addToCart('Cuphead', 20, 'https://upload.wikimedia.org/wikipedia/en/e/eb/Cuphead_%28artwork%29.png')"
+      class="btn-modern">
+      <i class="fa-solid fa-cart-plus"></i>
+      <span>Add to Cart</span>
+    </button>
+
+    <a 
+      href="cart.php"
+      class="btn-modern">
+      <i class="fa-solid fa-shopping-cart"></i>
+      <span>View Cart</span>
+    </a>
+
+    <a 
+      href="index.php"
+      class="btn-modern btn-home">
+      <i class="fa-solid fa-home"></i>
+      <span>Home Page</span>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; Gaming World rights reserved</p>
+</footer>
+
+<script src="game.js?v=20"></script>
+
+</body>
+</html>

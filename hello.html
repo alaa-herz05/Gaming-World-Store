@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gaming World</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="Icon.png">
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#930505">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    font-family:'Orbitron',sans-serif;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+.page{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    padding:40px 20px;
+}
+
+.bg-image{
+    position:absolute;
+    inset:0;
+    background-image:url('Poster.png');
+    background-size:cover;
+    background-position:center top;
+    background-repeat:no-repeat;
+    opacity:.88;
+    transform:scale(1.03);
+    z-index:0;
+    animation:bgZoom 14s ease-in-out infinite alternate;
+}
+
+@keyframes bgZoom{
+    from{ transform:scale(1.03); }
+    to{ transform:scale(1.08); }
+}
+
+.bg-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at center, rgba(147,5,5,.20) 0%, transparent 35%),
+    radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, rgba(0,0,0,.90) 100%);
+    z-index:1;
+}
+
+.red-glow{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+    rgba(147,5,5,.35) 0%,
+    rgba(147,5,5,.10) 35%,
+    transparent 70%);
+    filter:blur(40px);
+    animation:pulseGlow 6s ease-in-out infinite;
+    z-index:2;
+}
+
+@keyframes pulseGlow{
+    0%,100%{
+        transform:scale(1);
+        opacity:.8;
+    }
+
+    50%{
+        transform:scale(1.15);
+        opacity:1;
+    }
+}
+
+.fire-particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:4;
+    pointer-events:none;
+}
+
+.fire-particles span{
+    position:absolute;
+    bottom:-100px;
+    display:block;
+    width:6px;
+    height:80px;
+    background:linear-gradient(
+        to top,
+        rgba(147,5,5,0),
+        rgba(147,5,5,1),
+        rgba(255,80,80,.8),
+        rgba(147,5,5,0)
+    );
+    border-radius:50%;
+    filter:blur(1px);
+    box-shadow:
+        0 0 10px #930505,
+        0 0 25px #930505,
+        0 0 45px #ff0000;
+    animation:burnUp linear infinite;
+}
+
+.fire-particles span:nth-child(1){left:5%; animation-duration:4s; animation-delay:0s;}
+.fire-particles span:nth-child(2){left:15%; animation-duration:5s; animation-delay:1s;}
+.fire-particles span:nth-child(3){left:25%; animation-duration:4.5s; animation-delay:.4s;}
+.fire-particles span:nth-child(4){left:35%; animation-duration:5.5s; animation-delay:1.2s;}
+.fire-particles span:nth-child(5){left:50%; animation-duration:4s; animation-delay:.8s;}
+.fire-particles span:nth-child(6){left:65%; animation-duration:6s; animation-delay:1.5s;}
+.fire-particles span:nth-child(7){left:75%; animation-duration:4.3s; animation-delay:.6s;}
+.fire-particles span:nth-child(8){left:85%; animation-duration:5.2s; animation-delay:1s;}
+.fire-particles span:nth-child(9){left:95%; animation-duration:4.8s; animation-delay:.2s;}
+
+@keyframes burnUp{
+    0%{
+        transform:translateY(0) scale(.6) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-115vh) scale(1.6) rotate(18deg);
+        opacity:0;
+    }
+}
+
+.content{
+    position:relative;
+    z-index:3;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
+    text-align:center;
+    animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.logo-wrapper{
+    animation:fadeIn .8s ease forwards;
+}
+
+.logo-img{
+    width:130px;
+    height:130px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 20px rgba(147,5,5,.7));
+    animation:pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        filter:drop-shadow(0 0 20px rgba(147,5,5,.7));
+    }
+
+    50%{
+        filter:drop-shadow(0 0 40px rgba(147,5,5,1));
+    }
+}
+
+.text-block{
+    max-width:700px;
+    animation:fadeIn 1s ease .3s both;
+}
+
+.headline{
+    font-size:clamp(22px,4vw,38px);
+    font-weight:900;
+    color:#930505;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    text-shadow:
+    0 0 20px rgba(147,5,5,.6),
+    0 0 40px rgba(147,5,5,.3);
+    margin-bottom:20px;
+    line-height:1.3;
+}
+
+.headline span{
+    color:#fff;
+}
+
+.divider{
+    width:80px;
+    height:3px;
+    background:linear-gradient(90deg, transparent, #930505, transparent);
+    margin:0 auto 20px auto;
+    border-radius:10px;
+}
+
+.description{
+    color:#b8b8b8;
+    font-size:clamp(12px,1.8vw,15px);
+    line-height:2;
+    font-weight:500;
+    letter-spacing:.5px;
+}
+
+.description .highlight{
+    color:#930505;
+    font-weight:700;
+}
+
+.description .white{
+    color:#fff;
+    font-weight:700;
+}
+
+.platforms{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+    animation:fadeIn 1s ease .5s both;
+}
+
+.platform-tag{
+    background:rgba(147,5,5,.1);
+    border:1px solid rgba(147,5,5,.4);
+    color:#930505;
+    padding:8px 20px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:all .3s;
+}
+
+.platform-tag:hover{
+    background:rgba(147,5,5,.25);
+    border-color:#930505;
+    box-shadow:0 0 15px rgba(147,5,5,.4);
+    transform:translateY(-3px);
+}
+
+.cta-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:16px 50px;
+    background:linear-gradient(135deg, #930505, #b30a0a);
+    color:#fff;
+    text-decoration:none;
+    font-weight:900;
+    font-size:clamp(13px,2vw,16px);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    border-radius:4px;
+    position:relative;
+    overflow:hidden;
+    transition:all .3s ease;
+    box-shadow:0 0 25px rgba(147,5,5,.5);
+    animation:fadeIn 1s ease .7s both;
+}
+
+.cta-btn::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    transition:left .5s;
+}
+
+.cta-btn:hover::before{
+    left:100%;
+}
+
+.cta-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 40px rgba(147,5,5,.8);
+}
+
+.bottom-line{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, transparent, #930505, #b30a0a, #930505, transparent);
+    z-index:2;
+}
+
+/* CLICK BURN EFFECT */
+
+.burn-screen{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at center, rgba(255,70,70,.85) 0%, rgba(147,5,5,.65) 22%, rgba(0,0,0,.95) 68%),
+        linear-gradient(to top, #000, #930505, #000);
+    z-index:9999;
+    pointer-events:none;
+    opacity:0;
+    transform:scale(.4);
+    filter:blur(25px);
+}
+
+.burn-screen.active{
+    animation:screenBurn 1.4s ease forwards;
+}
+
+@keyframes screenBurn{
+    0%{
+        opacity:0;
+        transform:scale(.35);
+        filter:blur(25px);
+    }
+
+    35%{
+        opacity:1;
+        transform:scale(1.1);
+        filter:blur(8px);
+    }
+
+    70%{
+        opacity:1;
+        transform:scale(1.8);
+        filter:blur(2px);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(3);
+        filter:blur(0);
+        background:#000;
+    }
+}
+
+.page.burning .content{
+    animation:contentBurn 1.1s ease forwards;
+}
+
+@keyframes contentBurn{
+    0%{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(.85) translateY(-40px);
+        filter:blur(10px);
+    }
+}
+
+.page.burning .fire-particles span{
+    width:10px;
+    height:160px;
+    animation-duration:.8s !important;
+}
+
+@media(max-width:768px){
+    .logo-img{
+        width:100px;
+        height:100px;
+    }
+
+    .headline{
+        letter-spacing:2px;
+    }
+
+    .description{
+        line-height:1.8;
+    }
+
+    .platforms{
+        gap:12px;
+    }
+
+    .platform-tag{
+        font-size:11px;
+        padding:8px 16px;
+    }
+
+    .cta-btn{
+        width:100%;
+        max-width:320px;
+    }
+
+    .red-glow{
+        width:450px;
+        height:450px;
+    }
+}
+
+/* ================= STORE LOGO HEART VIDEO STYLE ANIMATION ================= */
+/* Same video idea, but the heart is replaced with the Gaming World logo */
+
+.logo-heart-effect{
+    position:relative;
+    width:260px;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:logoIntro .9s ease both;
+}
+
+.logo-energy-field{
+    position:relative;
+    width:240px;
+    height:240px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    isolation:isolate;
+}
+
+.logo-energy-field::before{
+    content:'';
+    position:absolute;
+    inset:8px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle, rgba(147,5,5,.35) 0%, rgba(147,5,5,.12) 35%, transparent 68%);
+    filter:blur(12px);
+    animation:heartVideoPulse 1.6s ease-in-out infinite;
+    z-index:0;
+}
+
+.logo-energy-field::after{
+    content:'';
+    position:absolute;
+    inset:28px;
+    border-radius:50%;
+    border:2px solid rgba(255,25,25,.65);
+    box-shadow:
+        0 0 18px rgba(147,5,5,.95),
+        inset 0 0 18px rgba(147,5,5,.65),
+        0 0 45px rgba(255,0,0,.35);
+    animation:logoCircleSpin 6s linear infinite;
+    z-index:1;
+}
+
+.logo-core{
+    position:relative;
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:6;
+    animation:logoHeartBeat 1.35s ease-in-out infinite;
+}
+
+.logo-core::before{
+    content:'';
+    position:absolute;
+    inset:-18px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(147,5,5,.15),
+            rgba(255,40,40,.85),
+            rgba(255,255,255,.65),
+            rgba(147,5,5,.65),
+            transparent
+        );
+    filter:blur(5px);
+    animation:logoEnergySpin 3.2s linear infinite;
+    z-index:-1;
+}
+
+.logo-core::after{
+    content:'';
+    position:absolute;
+    inset:-40px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle, transparent 42%, rgba(147,5,5,.28) 48%, transparent 64%);
+    filter:blur(3px);
+    animation:logoShockwave 1.8s ease-out infinite;
+    z-index:-2;
+}
+
+.logo-heart-effect .logo-img{
+    width:150px;
+    height:150px;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 15px rgba(255,255,255,.35))
+        drop-shadow(0 0 28px rgba(147,5,5,1))
+        drop-shadow(0 0 52px rgba(255,0,0,.65));
+    animation:logoGlowShift 1.6s ease-in-out infinite;
+}
+
+.heart-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:1px solid rgba(147,5,5,.55);
+    box-shadow:
+        0 0 16px rgba(147,5,5,.8),
+        inset 0 0 20px rgba(147,5,5,.28);
+    pointer-events:none;
+    z-index:2;
+}
+
+.ring-1{
+    inset:22px;
+    animation:ringPulseOne 1.7s ease-in-out infinite;
+}
+
+.ring-2{
+    inset:5px;
+    border-color:rgba(255,55,55,.35);
+    animation:ringPulseTwo 2.1s ease-in-out infinite;
+}
+
+.ring-3{
+    inset:45px;
+    border-color:rgba(255,255,255,.18);
+    animation:ringPulseThree 1.35s ease-in-out infinite;
+}
+
+.energy-dot{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ff1b1b;
+    box-shadow:
+        0 0 12px #ff0000,
+        0 0 25px rgba(147,5,5,.9);
+    z-index:5;
+    transform-origin:120px 120px;
+}
+
+.dot-1{ left:116px; top:-2px; animation:orbitLogo 3.2s linear infinite; }
+.dot-2{ left:116px; top:-2px; animation:orbitLogo 3.7s linear infinite reverse; }
+.dot-3{ left:116px; top:-2px; animation:orbitLogo 4.2s linear infinite; animation-delay:-1s; }
+.dot-4{ left:116px; top:-2px; animation:orbitLogo 4.6s linear infinite reverse; animation-delay:-1.6s; }
+.dot-5{ left:116px; top:-2px; animation:orbitLogoSmall 2.9s linear infinite; animation-delay:-.7s; }
+.dot-6{ left:116px; top:-2px; animation:orbitLogoSmall 3.4s linear infinite reverse; animation-delay:-1.2s; }
+.dot-7{ left:116px; top:-2px; animation:orbitLogoWide 5s linear infinite; animation-delay:-2s; }
+.dot-8{ left:116px; top:-2px; animation:orbitLogoWide 5.6s linear infinite reverse; animation-delay:-2.8s; }
+
+.logo-flame{
+    position:absolute;
+    bottom:20px;
+    width:10px;
+    height:85px;
+    border-radius:50%;
+    background:
+        linear-gradient(to top, transparent, rgba(147,5,5,.95), rgba(255,75,75,.85), transparent);
+    filter:blur(1px);
+    box-shadow:
+        0 0 12px #930505,
+        0 0 28px #ff0000;
+    z-index:3;
+    opacity:.8;
+    animation:logoFlameUp linear infinite;
+}
+
+.flame-1{ left:50px; animation-duration:2.6s; animation-delay:0s; }
+.flame-2{ left:95px; animation-duration:3.1s; animation-delay:.4s; }
+.flame-3{ right:80px; animation-duration:2.8s; animation-delay:.8s; }
+.flame-4{ right:42px; animation-duration:3.3s; animation-delay:.2s; }
+
+@keyframes logoIntro{
+    from{
+        opacity:0;
+        transform:scale(.7) translateY(20px);
+        filter:blur(8px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+        filter:blur(0);
+    }
+}
+
+@keyframes logoHeartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    15%{
+        transform:scale(1.11);
+    }
+    28%{
+        transform:scale(.98);
+    }
+    45%{
+        transform:scale(1.07);
+    }
+    65%{
+        transform:scale(1);
+    }
+}
+
+@keyframes heartVideoPulse{
+    0%,100%{
+        transform:scale(.92);
+        opacity:.55;
+    }
+    50%{
+        transform:scale(1.18);
+        opacity:1;
+    }
+}
+
+@keyframes logoGlowShift{
+    0%,100%{
+        filter:
+            drop-shadow(0 0 15px rgba(255,255,255,.35))
+            drop-shadow(0 0 28px rgba(147,5,5,1))
+            drop-shadow(0 0 52px rgba(255,0,0,.65));
+    }
+    50%{
+        filter:
+            drop-shadow(0 0 24px rgba(255,255,255,.55))
+            drop-shadow(0 0 42px rgba(147,5,5,1))
+            drop-shadow(0 0 80px rgba(255,0,0,.9));
+    }
+}
+
+@keyframes logoEnergySpin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes logoCircleSpin{
+    from{ transform:rotate(0deg) scale(1); }
+    50%{ transform:rotate(180deg) scale(1.04); }
+    to{ transform:rotate(360deg) scale(1); }
+}
+
+@keyframes logoShockwave{
+    0%{
+        transform:scale(.72);
+        opacity:.9;
+    }
+    100%{
+        transform:scale(1.35);
+        opacity:0;
+    }
+}
+
+@keyframes ringPulseOne{
+    0%,100%{ transform:scale(1); opacity:.72; }
+    50%{ transform:scale(1.08); opacity:1; }
+}
+
+@keyframes ringPulseTwo{
+    0%,100%{ transform:scale(.95); opacity:.35; }
+    50%{ transform:scale(1.08); opacity:.85; }
+}
+
+@keyframes ringPulseThree{
+    0%,100%{ transform:scale(1.1); opacity:.24; }
+    50%{ transform:scale(.96); opacity:.7; }
+}
+
+@keyframes orbitLogo{
+    from{ transform:rotate(0deg) translateX(112px) rotate(0deg); }
+    to{ transform:rotate(360deg) translateX(112px) rotate(-360deg); }
+}
+
+@keyframes orbitLogoSmall{
+    from{ transform:rotate(0deg) translateX(82px) rotate(0deg); }
+    to{ transform:rotate(360deg) translateX(82px) rotate(-360deg); }
+}
+
+@keyframes orbitLogoWide{
+    from{ transform:rotate(0deg) translateX(132px) rotate(0deg); }
+    to{ transform:rotate(360deg) translateX(132px) rotate(-360deg); }
+}
+
+@keyframes logoFlameUp{
+    0%{
+        transform:translateY(35px) scale(.45) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:.95;
+    }
+    100%{
+        transform:translateY(-160px) scale(1.3) rotate(14deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:768px){
+    .logo-heart-effect{
+        width:220px;
+        height:220px;
+    }
+
+    .logo-energy-field{
+        width:205px;
+        height:205px;
+    }
+
+    .logo-core{
+        width:120px;
+        height:120px;
+    }
+
+    .logo-heart-effect .logo-img{
+        width:125px;
+        height:125px;
+    }
+
+    .energy-dot{
+        transform-origin:102px 102px;
+    }
+
+    @keyframes orbitLogo{
+        from{ transform:rotate(0deg) translateX(96px) rotate(0deg); }
+        to{ transform:rotate(360deg) translateX(96px) rotate(-360deg); }
+    }
+
+    @keyframes orbitLogoSmall{
+        from{ transform:rotate(0deg) translateX(70px) rotate(0deg); }
+        to{ transform:rotate(360deg) translateX(70px) rotate(-360deg); }
+    }
+
+    @keyframes orbitLogoWide{
+        from{ transform:rotate(0deg) translateX(110px) rotate(0deg); }
+        to{ transform:rotate(360deg) translateX(110px) rotate(-360deg); }
+    }
+}
+
+
+
+/* ================= REAL 3D LOGO MOUSE ANIMATION ================= */
+.logo-heart-effect{
+    perspective:900px;
+    transform-style:preserve-3d;
+    cursor:pointer;
+}
+
+.logo-energy-field{
+    transform-style:preserve-3d;
+    transition:transform .18s ease, filter .18s ease;
+    will-change:transform;
+}
+
+.logo-heart-effect:hover .logo-energy-field,
+.logo-heart-effect.logo-3d-active .logo-energy-field{
+    filter:drop-shadow(0 0 35px rgba(147,5,5,.85));
+}
+
+.logo-core{
+    transform-style:preserve-3d;
+}
+
+.logo-heart-effect .logo-img{
+    transform:translateZ(70px);
+    transition:transform .18s ease, filter .18s ease;
+}
+
+.logo-heart-effect:hover .logo-img,
+.logo-heart-effect.logo-3d-active .logo-img{
+    transform:translateZ(95px) scale(1.08);
+}
+
+.logo-heart-effect .ring-1{ transform:translateZ(18px); }
+.logo-heart-effect .ring-2{ transform:translateZ(4px); }
+.logo-heart-effect .ring-3{ transform:translateZ(36px); }
+.logo-heart-effect .energy-dot{ transform-style:preserve-3d; }
+
+.logo-depth-shadow{
+    position:absolute;
+    width:150px;
+    height:38px;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%) rotateX(70deg) translateZ(-90px);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(147,5,5,.55), transparent 70%);
+    filter:blur(12px);
+    z-index:0;
+    opacity:.8;
+    pointer-events:none;
+    animation:logoShadowPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes logoShadowPulse{
+    0%,100%{ opacity:.45; transform:translateX(-50%) rotateX(70deg) translateZ(-90px) scale(.9); }
+    50%{ opacity:.9; transform:translateX(-50%) rotateX(70deg) translateZ(-90px) scale(1.15); }
+}
+
+@media(max-width:768px){
+    .logo-heart-effect .logo-img{
+        transform:translateZ(45px);
+    }
+
+    .logo-heart-effect:hover .logo-img,
+    .logo-heart-effect.logo-3d-active .logo-img{
+        transform:translateZ(65px) scale(1.06);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+    <div class="red-glow"></div>
+
+    <div class="fire-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="content">
+
+        <div class="logo-wrapper logo-heart-effect">
+            <div class="logo-energy-field">
+                <span class="logo-depth-shadow"></span>
+                <span class="heart-ring ring-1"></span>
+                <span class="heart-ring ring-2"></span>
+                <span class="heart-ring ring-3"></span>
+
+                <span class="energy-dot dot-1"></span>
+                <span class="energy-dot dot-2"></span>
+                <span class="energy-dot dot-3"></span>
+                <span class="energy-dot dot-4"></span>
+                <span class="energy-dot dot-5"></span>
+                <span class="energy-dot dot-6"></span>
+                <span class="energy-dot dot-7"></span>
+                <span class="energy-dot dot-8"></span>
+
+                <span class="logo-flame flame-1"></span>
+                <span class="logo-flame flame-2"></span>
+                <span class="logo-flame flame-3"></span>
+                <span class="logo-flame flame-4"></span>
+
+                <div class="logo-core">
+                    <img src="Icon.png" class="logo-img" alt="Gaming World Logo">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-block">
+
+            <h2 class="headline">
+                🎮 Buy. <span>Play.</span> Dominate.
+            </h2>
+
+            <div class="divider"></div>
+
+            <p class="description">
+                Welcome to
+                <span class="highlight">Gaming World</span>
+                — your trusted marketplace for premium gaming accounts.
+
+                <br><br>
+
+                We offer verified
+                <span class="highlight">PlayStation</span>,
+                <span class="highlight">Xbox</span>,
+                and
+                <span class="highlight">Steam</span>
+
+                accounts loaded with the games you love — no subscriptions, no hassle.
+
+                <br><br>
+
+                <span class="white">
+                    Pick your platform. Pick your game. Own it instantly.
+                </span>
+            </p>
+
+        </div>
+
+        <div class="platforms">
+            <span class="platform-tag">🎮 PlayStation</span>
+            <span class="platform-tag">🟢 Xbox</span>
+            <span class="platform-tag">🖥️ Steam</span>
+        </div>
+
+        <a href="index.php" class="cta-btn" id="visitBtn">
+            Visit Website
+        </a>
+
+    </div>
+
+    <div class="bottom-line"></div>
+
+</div>
+
+<div class="burn-screen" id="burnScreen"></div>
+
+<script>
+const visitBtn = document.getElementById("visitBtn");
+const page = document.querySelector(".page");
+const burnScreen = document.getElementById("burnScreen");
+
+visitBtn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    page.classList.add("burning");
+    burnScreen.classList.add("active");
+
+    setTimeout(function(){
+        window.location.href = "index.php";
+    }, 1400);
+});
+
+
+/* REAL 3D LOGO MOVEMENT WITH MOUSE / TOUCH */
+const logo3DBox = document.querySelector('.logo-heart-effect');
+const logo3DField = document.querySelector('.logo-energy-field');
+
+if (logo3DBox && logo3DField) {
+    function moveLogo3D(clientX, clientY){
+        const rect = logo3DBox.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateY = ((x - centerX) / centerX) * 18;
+        const rotateX = ((centerY - y) / centerY) * 18;
+        const moveX = ((x - centerX) / centerX) * 8;
+        const moveY = ((y - centerY) / centerY) * 8;
+
+        logo3DBox.classList.add('logo-3d-active');
+        logo3DField.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${moveX}px, ${moveY}px, 0) scale(1.04)`;
+    }
+
+    logo3DBox.addEventListener('mousemove', function(e){
+        moveLogo3D(e.clientX, e.clientY);
+    });
+
+    logo3DBox.addEventListener('mouseleave', function(){
+        logo3DBox.classList.remove('logo-3d-active');
+        logo3DField.style.transform = '';
+    });
+
+    logo3DBox.addEventListener('touchmove', function(e){
+        if (!e.touches || !e.touches[0]) return;
+        moveLogo3D(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive:true });
+
+    logo3DBox.addEventListener('touchend', function(){
+        setTimeout(() => {
+            logo3DBox.classList.remove('logo-3d-active');
+            logo3DField.style.transform = '';
+        }, 220);
+    });
+}
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW Registered'))
+        .catch(err => console.log(err));
+    });
+}
+</script>
+
+</body>
+</html>
